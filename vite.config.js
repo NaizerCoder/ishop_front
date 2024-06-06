@@ -12,5 +12,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  // server: {
+  //   host: 'ishop_front',
+  //   port: 9191
+  // }
 })
