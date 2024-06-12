@@ -5,14 +5,9 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'one',
-      component: () => import('../components/One.vue')
+      name: 'home.menu',
+      component: () => import('../view/main/Index.vue')
     },
-    {
-      path: '/two',
-      name: 'two',
-      component: () => import('../components/Two.vue')
-    }
   ]
 })
 
