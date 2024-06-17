@@ -327,7 +327,7 @@
                                                                             </p>
                                                                             <div class="price">
                                                                                 <h2> {{ product.price }}р.
-                                                                                    <del> 5000р.</del>
+                                                                                    <del> {{ product.old_price }}р.</del>
                                                                                 </h2>
                                                                                 <h6> In stuck</h6>
                                                                             </div>
@@ -384,7 +384,7 @@
                                                             <h5><a href="shop-details-3.html"> Trendy stylish shoes </a>
                                                             </h5>
                                                             <p>
-                                                                <del>$200.00</del>
+                                                                <del>{{product.old_price}}</del>
                                                                 {{ product.price }}
                                                             </p>
                                                         </div>
