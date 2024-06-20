@@ -329,21 +329,17 @@
                                                                                 <h2> {{ product.price }}р.
                                                                                     <del> {{ product.old_price }}р.</del>
                                                                                 </h2>
-                                                                                <h6> In stuck</h6>
+                                                                                <h6> Оригинал</h6>
                                                                             </div>
-                                                                            <div class="color-varient"><a href="#0"
-                                                                                                          class="color-name pink">
-                                                                                <span>Pink</span> </a> <a href="#0"
-                                                                                                          class="color-name red">
-                                                                                <span>Red</span> </a>
-                                                                                <a href="#0"
-                                                                                   class="color-name yellow"><span>Yellow</span>
-                                                                                </a> <a href="#0"
-                                                                                        class="color-name blue">
-                                                                                    <span>Blue</span>
-                                                                                </a> <a href="#0"
-                                                                                        class="color-name black">
-                                                                                    <span>Black</span> </a></div>
+
+                                                                            <template v-if="product.product_sub">
+                                                                                <div>
+                                                                                    <a v-for="prosub in product.product_sub" href="#0" class="" style="width:20px; height:20px;">
+                                                                                        <img :src="prosub.image.url" width="50px" height="50px" />
+                                                                                    </a>
+                                                                                </div>
+                                                                            </template>
+
                                                                             <div class="add-product">
                                                                                 <h6>Qty:</h6>
                                                                                 <div class="button-group">
@@ -2202,17 +2198,22 @@
                                                                                 </h2>
                                                                                 <h6> In stuck</h6>
                                                                             </div>
-                                                                            <div class="color-varient"><a href="#0"
-                                                                                                          class="color-name pink">
-                                                                                <span>Pink</span> </a> <a href="#0"
-                                                                                                          class="color-name red">
-                                                                                <span>Red</span>
-                                                                            </a> <a href="#0"
-                                                                                    class="color-name yellow"><span>Yellow</span>
-                                                                            </a> <a href="#0" class="color-name blue">
-                                                                                <span>Blue</span> </a> <a href="#0"
-                                                                                                          class="color-name black">
-                                                                                <span>Black</span> </a></div>
+                                                                            <div class="color-varient">
+                                                                                <a href="#0" class="color-name">
+                                                                                    <span>Pink</span> </a>
+                                                                                <a href="#0" class="color-name red">
+                                                                                    <span>Red</span>
+                                                                                </a>
+                                                                                <a href="#0" class="color-name yellow">
+                                                                                    <span>Yellow</span>
+                                                                                </a>
+                                                                                <a href="#0" class="color-name blue">
+                                                                                    <span>Blue</span>
+                                                                                </a>
+                                                                                <a href="#0" class="color-name black">
+                                                                                    <span>Black</span>
+                                                                                </a>
+                                                                            </div>
                                                                             <div class="add-product">
                                                                                 <h6>Qty:</h6>
                                                                                 <div class="button-group">
