@@ -264,7 +264,7 @@
                                                                             class="flaticon-left-and-right-arrows"></i>
                                                                         <span>
                                                                             compare</span> </a></li>
-                                                                    <li><a :href="`#popup${product.id}`"
+                                                                    <li><a @click="getProduct(product.id)" :href="`#popup${product.id}`"
                                                                            class="popup_link"> <i
                                                                             class="flaticon-visibility"></i>
                                                                         <span> quick view</span>
@@ -274,14 +274,14 @@
                                                         </div>
                                                         <div :id="`popup${product.id}`"
                                                              class="product-gird__quick-view-popup mfp-hide">
-                                                            <div class="container">
+                                                            <div v-if="popupProduct" class="container">
                                                                 <div class="row justify-content-between">
                                                                     <div class="col-lg-6">
                                                                         <div class="quick-view__left-content">
                                                                             <div class="tabs">
                                                                                 <div class="popup-product-thumb-box">
                                                                                     <ul>
-                                                                                        <li v-for="image in product.image"
+                                                                                        <li v-for="image in popupProduct.image"
                                                                                             class="tab-nav popup-product-thumb">
                                                                                             <a :href="`#tabb${image.id}`">
                                                                                                 <img :src="image.url"
@@ -291,7 +291,7 @@
                                                                                     </ul>
                                                                                 </div>
                                                                                 <div class="popup-product-main-image-box">
-                                                                                    <div v-for="image in product.image">
+                                                                                    <div v-for="image in popupProduct.image">
                                                                                         <div :id="`tabb${image.id}`"
                                                                                              class="tab-item popup-product-image">
                                                                                             <div
@@ -315,7 +315,7 @@
                                                                     </div>
                                                                     <div class="col-lg-6">
                                                                         <div class="popup-right-content">
-                                                                            <h3>{{ product.title }}</h3>
+                                                                            <h3>{{popupProduct.title }}</h3>
                                                                             <div class="ratting"><i
                                                                                     class="flaticon-star"></i> <i
                                                                                     class="flaticon-star"></i> <i
@@ -323,18 +323,18 @@
                                                                                 <i class="flaticon-star"></i> <i
                                                                                         class="flaticon-star"></i>
                                                                                 <span>(112)</span></div>
-                                                                            <p class="text"> {{ product.description }}
+                                                                            <p class="text"> {{ popupProduct.description }}
                                                                             </p>
                                                                             <div class="price">
-                                                                                <h2> {{ product.price }}р.
-                                                                                    <del> {{ product.old_price }}р.</del>
+                                                                                <h2> {{ popupProduct.price }}р.
+                                                                                    <del> {{ popupProduct.old_price }}р.</del>
                                                                                 </h2>
                                                                                 <h6> Оригинал</h6>
                                                                             </div>
 
-                                                                            <template v-if="product.product_sub">
+                                                                            <template v-if="popupProduct.product_sub" >
                                                                                 <div>
-                                                                                    <a v-for="prosub in product.product_sub" href="#0" class="" style="width:20px; height:20px;">
+                                                                                    <a @click.prevent="getProduct(prosub.id)" v-for="prosub in popupProduct.product_sub" href="#0" class="" style="width:20px; height:20px;">
                                                                                         <img :src="prosub.image.url" width="50px" height="50px" />
                                                                                     </a>
                                                                                 </div>
@@ -2311,6 +2311,7 @@ export default {
     data() {
         return {
             products: [],
+            popupProduct: null,
         }
     },
     mounted() {
@@ -2329,6 +2330,17 @@ export default {
                 .finally(v => {
                     $(document).trigger('change')
 
+                })
+        },
+
+        getProduct(id) {
+            this.axios.get(`http://ishop/api/products/${id}`)
+                .then(res => {
+                    this.popupProduct = res.data.data;
+                    console.log(this.popupProduct);
+                })
+                .finally(v => {
+                    $(document).trigger('change')
                 })
         },
 
