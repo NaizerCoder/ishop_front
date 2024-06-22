@@ -1,3 +1,7 @@
+<script setup>
+import Body_product from '@/view/product/Body_product.vue'
+</script>
+
 <template>
     <div class="">
         <main class="overflow-hidden ">
@@ -264,12 +268,14 @@
                                                                             class="flaticon-left-and-right-arrows"></i>
                                                                         <span>
                                                                             compare</span> </a></li>
-                                                                    <li><a @click.prevent="getProduct(product.id)"
+                                                                    <li>
+                                                                        <a @click.prevent="getProduct(product.id)"
                                                                            :href="`#popup${product.id}`"
                                                                            class="popup_link"> <i
-                                                                            class="flaticon-visibility"></i>
-                                                                        <span> quick view</span>
-                                                                    </a></li>
+                                                                                class="flaticon-visibility"></i>
+                                                                            <span> quick view</span>
+                                                                        </a>
+                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -284,7 +290,7 @@
                                                                                     <ul>
                                                                                         <li v-for="imagePop in popupProduct.image"
                                                                                             class="tab-nav popup-product-thumb">
-                                                                                            <a :href="`#tab${imagePop.id}`">
+                                                                                            <a :href="`#tabb${imagePop.id}`">
                                                                                                 <img :src="imagePop.url"
                                                                                                      alt=""/>
                                                                                             </a>
@@ -292,20 +298,21 @@
                                                                                     </ul>
                                                                                 </div>
                                                                                 <div class="popup-product-main-image-box">
-                                                                                        <div v-for="imagePop in popupProduct.image" :id="`tab${imagePop.id}`"
-                                                                                             class="tab-item popup-product-image">
-                                                                                            <div class="popup-product-single-image">
-                                                                                                <img :src="imagePop.url"
-                                                                                                     alt=""/>
-                                                                                            </div>
+                                                                                    <div v-for="imagePop in popupProduct.image"
+                                                                                         :id="`tabb${imagePop.id}`"
+                                                                                         class="tab-item popup-product-image">
+                                                                                        <div class="popup-product-single-image">
+                                                                                            <img :src="imagePop.url"
+                                                                                                 alt=""/>
                                                                                         </div>
+                                                                                    </div>
 
-                                                                                    <button class="prev"><i
-                                                                                            class="flaticon-back"></i>
+                                                                                    <button class="prev">
+                                                                                        <i class="flaticon-back"></i>
                                                                                     </button>
 
-                                                                                    <button class="next"><i
-                                                                                            class="flaticon-next"></i>
+                                                                                    <button class="next">
+                                                                                        <i class="flaticon-next"></i>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -383,15 +390,15 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-<!--                                                        <div class="products-three-single-content text-center">-->
-<!--                                                            <span>TITLE</span>-->
-<!--                                                            <h5><a href="shop-details-3.html"> Trendy stylish shoes </a>-->
-<!--                                                            </h5>-->
-<!--                                                            <p>-->
-<!--                                                                <del>{{ product.old_price }}</del>-->
-<!--                                                                {{ product.price }}-->
-<!--                                                            </p>-->
-<!--                                                        </div>-->
+                                                        <div class="products-three-single-content text-center">
+                                                            <span>{{ product.title }}</span>
+                                                            <h5><a href="shop-details-3.html"> {{ product.content }} </a>
+                                                            </h5>
+                                                            <p>
+                                                                <del>{{ product.old_price }}</del>
+                                                                {{ product.price }}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2342,9 +2349,12 @@ export default {
         },
 
         getProduct(id) {
+
+            this.popupProduct = null
+
             this.axios.get(`http://ishop/api/products/${id}`)
                 .then(res => {
-                    this.popupProduct = null
+
                     this.popupProduct = res.data.data
                     console.log(this.popupProduct)
                 })
