@@ -116,7 +116,8 @@ import Body_product from '@/view/product/Body_product.vue'
                                         <div class="checkbox-item">
                                             <form v-if="filterProduct.categories">
                                                 <div v-for="category in filterProduct.categories" class="form-group">
-                                                    <input type="checkbox" :id="`cat_${category.id}`">
+                                                    <input type="checkbox" :id="`cat_${category.id}`"
+                                                           v-model="categories" :value="category.id">
                                                     <label :for="`cat_${category.id}`">{{ category.title }}</label>
                                                 </div>
                                             </form>
@@ -126,7 +127,9 @@ import Body_product from '@/view/product/Body_product.vue'
                                         <h4>Цвета </h4>
                                         <ul v-if="filterProduct.colors" class="color-option">
                                             <li v-for="color in filterProduct.colors">
-                                                <a href="#0" class="color-option-single" :style="`background-color:#${color.color}`">
+                                                <a href="#0" @click.prevent="addColor(color.id)"
+                                                   class="color-option-single"
+                                                   :style="`background-color:#${color.color}`">
                                                     <span> {{ color.title }}</span>
                                                 </a>
                                             </li>
@@ -138,8 +141,8 @@ import Body_product from '@/view/product/Body_product.vue'
                                             <div id="price-range" class="slider"></div>
                                             <div class="output-price"><label for="priceRange">Price:</label> <input
                                                     type="text" id="priceRange" readonly></div>
-                                            <button class="filterbtn"
-                                                    type="submit"> Filter
+                                            <button class="filterbtn" type="submit" @click.prevent="getFilterItems()">
+                                                Показать
                                             </button>
                                         </div>
                                     </div>
@@ -358,7 +361,9 @@ import Body_product from '@/view/product/Body_product.vue'
                                                         </div>
                                                         <div class="products-three-single-content text-center">
                                                             <span>{{ product.title }}</span>
-                                                            <h5><a href="shop-details-3.html"> {{ product.content }} </a>
+                                                            <h5><a href="shop-details-3.html"> {{
+                                                                product.content
+                                                                }} </a>
                                                             </h5>
                                                             <p>
                                                                 <del>{{ product.old_price }}</del>
@@ -2293,7 +2298,12 @@ export default {
         return {
             products: [],
             popupProduct: null,
-            filterProduct: {}
+            filterProduct: {},
+            categories: [],
+            colors: [],
+            prices: [],
+            tags: [],
+
         }
     },
     mounted() {
@@ -2303,6 +2313,23 @@ export default {
     },
 
     methods: {
+
+        addColor(id) {
+
+            if (!this.colors.includes(id)) {
+                this.colors.push(id);
+
+            } else {
+                this.colors = this.colors.filter(item => {
+                        return item != id
+                    }
+                )
+
+                console.log(this.colors);
+
+            }
+        }
+        ,
 
         getProducts() {
             this.axios.get('http://ishop/api/products')
@@ -2314,7 +2341,8 @@ export default {
                     $(document).trigger('filterEvn')
 
                 })
-        },
+        }
+        ,
 
         getProduct(id) {
 
@@ -2329,9 +2357,10 @@ export default {
                 .finally(v => {
                     $(document).trigger('filterEvn')
                 })
-        },
+        }
+        ,
 
-        getFilterProduct(){
+        getFilterProduct() {
             this.axios.get(`http://ishop/api/products/filters`)
                 .then(res => {
                     this.filterProduct = res.data
@@ -2355,9 +2384,15 @@ export default {
                 .finally(v => {
                     $(document).trigger('filterEvn')
                 })
+        }
+        ,
 
+        getFilterItems() {
 
-        },
+            console.log(this.categories);
+
+        }
+        ,
 
 
     }
