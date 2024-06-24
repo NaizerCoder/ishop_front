@@ -332,7 +332,7 @@ import Left_mobile from "@/view/menu/Left_mobile.vue"
 export default {
     name: 'Index',
     mounted() {
-        $(document).trigger('change')
+        $(document).trigger('filterEvn')
     }
 
 }
