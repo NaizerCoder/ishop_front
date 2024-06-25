@@ -129,6 +129,7 @@ import Body_product from '@/view/product/Body_product.vue'
                                             <li v-for="color in filterProduct.colors">
                                                 <a href="#0" @click.prevent="addColor(color.id)"
                                                    class="color-option-single"
+                                                   :id="`color_${color.id}`"
                                                    :style="`background-color:#${color.color}`">
                                                     <span> {{ color.title }}</span>
                                                 </a>
@@ -150,7 +151,9 @@ import Body_product from '@/view/product/Body_product.vue'
                                         <h4>Тэги </h4>
                                         <ul v-if="filterProduct.tags" class="popular-tag">
                                             <li v-for="tag in filterProduct.tags">
-                                                <a href="#">{{ tag.title }}</a>
+                                                <a href="#" @click.prevent="addTag(tag.id)">
+                                                    {{ tag.title }}
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -2303,6 +2306,7 @@ export default {
             colors: [],
             prices: [],
             tags: [],
+            styleColor: '',
 
         }
     },
@@ -2316,23 +2320,36 @@ export default {
 
         addColor(id) {
 
+            document.getElementById(`color_${id}`).style.border='4px solid #888'
+
             if (!this.colors.includes(id)) {
                 this.colors.push(id);
 
             } else {
+                document.getElementById(`color_${id}`).style.border='0'
                 this.colors = this.colors.filter(item => {
                         return item != id
                     }
                 )
-
-                console.log(this.colors);
-
             }
-        }
-        ,
+        },
+
+        addTag(id){
+
+            if (!this.tags.includes(id)) {
+                this.tags.push(id);
+
+            } else {
+                this.tags = this.tags.filter(item => {
+                        return item != id
+                    }
+                )
+            }
+
+        },
 
         getProducts() {
-            this.axios.get('http://ishop/api/products')
+            this.axios.post('http://ishop/api/products',{})
                 .then(res => {
                     this.products = res.data.data;
                     console.log(this.products);
@@ -2389,10 +2406,10 @@ export default {
 
         getFilterItems() {
 
-            console.log(this.categories);
-
-        }
-        ,
+            let price = $("#priceRange").val()
+            this.prices = price.replace(/[\s+]|[$]/g, "").split('-')
+            console.log(this.prices);
+        },
 
 
     }
