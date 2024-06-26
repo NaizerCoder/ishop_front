@@ -142,8 +142,12 @@ import Body_product from '@/view/product/Body_product.vue'
                                             <div id="price-range" class="slider"></div>
                                             <div class="output-price"><label for="priceRange">Price:</label> <input
                                                     type="text" id="priceRange" readonly></div>
-                                            <button class="filterbtn" type="submit" @click.prevent="getFilterItems()">
+                                            <button class="filterbtn" type="submit" @click.prevent="sendFilterItems()">
                                                 Показать
+                                            </button>
+
+                                            <button class="filterbtn" @click.prevent="clearFilter()">
+                                                Сброс
                                             </button>
                                         </div>
                                     </div>
@@ -2307,6 +2311,7 @@ export default {
             prices: [],
             tags: [],
             styleColor: '',
+            rangeLine:null,
 
         }
     },
@@ -2349,7 +2354,7 @@ export default {
         },
 
         getProducts() {
-            this.axios.post('http://ishop/api/products',{})
+            this.axios.post('http://ishop/api/products', {})
                 .then(res => {
                     this.products = res.data.data;
                     console.log(this.products);
@@ -2358,8 +2363,7 @@ export default {
                     $(document).trigger('filterEvn')
 
                 })
-        }
-        ,
+        },
 
         getProduct(id) {
 
@@ -2374,8 +2378,7 @@ export default {
                 .finally(v => {
                     $(document).trigger('filterEvn')
                 })
-        }
-        ,
+        },
 
         getFilterProduct() {
             this.axios.get(`http://ishop/api/products/filters`)
@@ -2384,7 +2387,8 @@ export default {
 
                     //  Price Filter
                     if ($("#price-range").length) {
-                        $("#price-range").slider({
+
+                    this.rangeLine =    $("#price-range").slider({
                             range: true,
                             min: this.filterProduct.price.minPrice,
                             max: this.filterProduct.price.maxPrice,
@@ -2401,15 +2405,50 @@ export default {
                 .finally(v => {
                     $(document).trigger('filterEvn')
                 })
-        }
-        ,
+        },
 
-        getFilterItems() {
+        sendFilterItems() {
 
             let price = $("#priceRange").val()
             this.prices = price.replace(/[\s+]|[$]/g, "").split('-')
-            console.log(this.prices);
+
+            this.axios.post('http://ishop/api/products', {
+                'categories': this.categories,
+                'price': this.prices,
+                'tags': this.tags,
+                'colors': this.colors
+
+            })
+                .then(res => {
+                    this.products = res.data.data;
+                    console.log(this.products);
+                })
+                .finally(v => {
+                    $(document).trigger('filterEvn')
+
+                })
         },
+
+        clearFilter(){
+            let options = this.rangeLine.slider('option');
+
+            this.colors = this.categories = this.tags = this.prices = []
+            this.rangeLine.slider("values", [ options.min, options.max ] );
+
+
+            // $("#price-range").slider({
+            //     range: true,
+            //     min: this.filterProduct.price.minPrice,
+            //     max: this.filterProduct.price.maxPrice,
+            //     values: [this.filterProduct.price.minPrice, this.filterProduct.price.maxPrice],
+            //     slide: function (event, ui) {
+            //         $("#priceRange").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            //     }
+            // });
+
+            $('.color-option-single').css('border', '0')
+            console.log(this.colors);
+        }
 
 
     }
