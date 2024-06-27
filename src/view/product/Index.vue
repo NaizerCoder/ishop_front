@@ -2373,13 +2373,10 @@ export default {
             this.axios.post('http://ishop/api/products', {})
                 .then(res => {
                     this.products = res.data.data;
-                    console.log(this.products);
+                    $('.option').attr({"test":'test'});
                 })
                 .finally(v => {
-                    $('.nice-select').click(this.productSort())
                     $(document).trigger('filterEvn')
-                        $('.nice-select').attr({"onclick":this.productSort()});
-
                 })
         },
 
@@ -2391,7 +2388,6 @@ export default {
                 .then(res => {
 
                     this.popupProduct = res.data.data
-                    console.log(this.popupProduct)
                 })
                 .finally(v => {
                     $(document).trigger('filterEvn')
@@ -2418,7 +2414,6 @@ export default {
                         $("#priceRange").val("$" + $("#price-range").slider("values", 0) + " - $" + $("#price-range").slider("values", 1));
                     }
 
-                    console.log(this.filterProduct.categories)
                 })
                 .finally(v => {
                     $(document).trigger('filterEvn')
@@ -2439,7 +2434,6 @@ export default {
             })
                 .then(res => {
                     this.products = res.data.data;
-                    console.log(this.products);
                 })
                 .finally(v => {
                     $(document).trigger('filterEvn')
@@ -2469,13 +2463,6 @@ export default {
             // });
 
             $('.color-option-single').css('border', '0')
-            console.log(this.colors);
-        },
-
-        onChange(event){
-            console.log('test_change');
-            console.log(event.target.value);
-            //this.products.sort( (a,b) => a.title - b.title )
         },
 
         changeCountry ($event) {
