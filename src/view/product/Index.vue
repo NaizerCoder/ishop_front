@@ -176,15 +176,18 @@ import Body_product from '@/view/product/Body_product.vue'
                                                 class="right-box justify-content-md-between justify-content-center wow fadeInUp animated">
                                             <div class="short-by">
                                                 <div class="select-box">
-                                                    <select class="wide">
-                                                        <option data-display="Short by latest">Featured</option>
-                                                        <option value="1">Best selling</option>
-                                                        <option value="2">Alphabetically, A-Z</option>
-                                                        <option value="3">Alphabetically, Z-A</option>
-                                                        <option value="3">Price, low to high</option>
-                                                        <option value="3">Price, high to low</option>
-                                                        <option value="3">Date, old to new</option>
+<!--                                                    class="wide"-->
+
+                                                    <select @change="changeCountry(event)">
+
+                                                        <option v-for="country in countries" :value="country.code" :key="country.code">
+                                                            {{country.name}}
+                                                        </option>
+
                                                     </select>
+
+                                                    <p><span>Selected country name: {{selectedCountry }}</span></p>
+                                                    <p><span>User country: {{ user.address.country }}</span></p>
                                                 </div>
                                             </div>
                                             <div class="product-view-style d-flex justify-content-md-between justify-content-center">
@@ -2311,7 +2314,20 @@ export default {
             prices: [],
             tags: [],
             styleColor: '',
-            rangeLine:null,
+            rangeLine: null,
+            key:'',
+
+            countries: [
+                { code: 'GB', name: 'Great Britain' },
+                { code: 'US', name: 'United States' },
+                { code: 'KZ', name: 'Kazakhstan' }
+            ],
+            selectedCountry: null,
+            user: {
+                address: {
+                    country: null
+                }
+            }
 
         }
     },
@@ -2325,13 +2341,13 @@ export default {
 
         addColor(id) {
 
-            document.getElementById(`color_${id}`).style.border='4px solid #888'
+            document.getElementById(`color_${id}`).style.border = '4px solid #888'
 
             if (!this.colors.includes(id)) {
                 this.colors.push(id);
 
             } else {
-                document.getElementById(`color_${id}`).style.border='0'
+                document.getElementById(`color_${id}`).style.border = '0'
                 this.colors = this.colors.filter(item => {
                         return item != id
                     }
@@ -2339,7 +2355,7 @@ export default {
             }
         },
 
-        addTag(id){
+        addTag(id) {
 
             if (!this.tags.includes(id)) {
                 this.tags.push(id);
@@ -2360,7 +2376,9 @@ export default {
                     console.log(this.products);
                 })
                 .finally(v => {
+                    $('.nice-select').click(this.productSort())
                     $(document).trigger('filterEvn')
+                        $('.nice-select').attr({"onclick":this.productSort()});
 
                 })
         },
@@ -2388,7 +2406,7 @@ export default {
                     //  Price Filter
                     if ($("#price-range").length) {
 
-                    this.rangeLine =    $("#price-range").slider({
+                        this.rangeLine = $("#price-range").slider({
                             range: true,
                             min: this.filterProduct.price.minPrice,
                             max: this.filterProduct.price.maxPrice,
@@ -2429,11 +2447,15 @@ export default {
                 })
         },
 
-        clearFilter(){
+        clearFilter() {
             let options = this.rangeLine.slider('option');
 
-            this.colors = this.categories = this.tags = this.prices = []
-            this.rangeLine.slider("values", [ options.min, options.max ] );
+            this.colors = []
+            this.categories = []
+            this.tags = []
+            this.prices = []
+
+            this.rangeLine.slider("values", [options.min, options.max]);
 
 
             // $("#price-range").slider({
@@ -2448,7 +2470,27 @@ export default {
 
             $('.color-option-single').css('border', '0')
             console.log(this.colors);
-        }
+        },
+
+        onChange(event){
+            console.log('test_change');
+            console.log(event.target.value);
+            //this.products.sort( (a,b) => a.title - b.title )
+        },
+
+        changeCountry ($event) {
+            // this.user.address.country = event.target.value
+            // this.selectedCountry = event.target.options[event.target.options.selectedIndex].text
+
+            console.log('TEST');
+            console.log(event.target.value);
+
+        },
+
+        productSort(){
+            console.log("worked");
+        },
+
 
 
     }
