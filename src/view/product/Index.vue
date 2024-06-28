@@ -176,18 +176,14 @@ import Body_product from '@/view/product/Body_product.vue'
                                                 class="right-box justify-content-md-between justify-content-center wow fadeInUp animated">
                                             <div class="short-by">
                                                 <div class="select-box">
-<!--                                                    class="wide"-->
-
-                                                    <select @change="changeCountry(event)">
-
-                                                        <option v-for="country in countries" :value="country.code" :key="country.code">
-                                                            {{country.name}}
-                                                        </option>
-
+                                                    <select class="form-select" @change="productSort($event)">
+                                                        <option selected disabled>Сортировка</option>
+                                                        <option value="alpha_asc">По алфавиту (А-Я)</option>
+                                                        <option value="alpha_desc">По алфавиту (Я-А)</option>
+                                                        <option value="price_asc">По возрастанию цены</option>
+                                                        <option value="price_desc">По убыванию цены</option>
                                                     </select>
 
-                                                    <p><span>Selected country name: {{selectedCountry }}</span></p>
-                                                    <p><span>User country: {{ user.address.country }}</span></p>
                                                 </div>
                                             </div>
                                             <div class="product-view-style d-flex justify-content-md-between justify-content-center">
@@ -2373,7 +2369,7 @@ export default {
             this.axios.post('http://ishop/api/products', {})
                 .then(res => {
                     this.products = res.data.data;
-                    $('.option').attr({"test":'test'});
+
                 })
                 .finally(v => {
                     $(document).trigger('filterEvn')
@@ -2474,8 +2470,31 @@ export default {
 
         },
 
-        productSort(){
-            console.log("worked");
+        productSort(event){
+            let param = event.target.value
+
+            console.log(this.products);
+
+            if( param == 'alpha_asc') {
+
+                this.products.sort((a, b) => a.title > b.title ? 1 : -1)
+            }
+
+            if( param == 'alpha_desc') {
+
+                this.products.sort((a, b) => a.title < b.title ? 1 : -1)
+            }
+
+            if( param == 'price_asc') {
+
+                this.products.sort((a, b) => a.price > b.price ? 1 : -1)
+            }
+
+            if( param == 'price_desc') {
+
+                this.products.sort((a, b) => a.price < b.price ? 1 : -1)
+            }
+
         },
 
 

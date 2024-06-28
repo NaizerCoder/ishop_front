@@ -837,10 +837,10 @@ jQuery(function ($) {
         ;
 
         /****======  niceSelect  ======*******/
-        if ($("select").length) {
-            $("select").niceSelect();
-        }
-        ;
+        // if ($("select").length) {
+        //     $("select").niceSelect();
+        // }
+        // ;
 
 
         /****======  Wow  ======*******/
