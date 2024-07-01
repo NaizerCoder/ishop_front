@@ -2366,7 +2366,12 @@ export default {
         },
 
         getProducts() {
-            this.axios.post('http://ishop/api/products', {})
+            this.axios.post('http://ishop/api/products', {
+                'categories': this.categories,
+                'price': this.prices,
+                'tags': this.tags,
+                'colors': this.colors
+            })
                 .then(res => {
                     this.products = res.data.data;
 
@@ -2420,21 +2425,8 @@ export default {
 
             let price = $("#priceRange").val()
             this.prices = price.replace(/[\s+]|[$]/g, "").split('-')
+            this.getProducts()
 
-            this.axios.post('http://ishop/api/products', {
-                'categories': this.categories,
-                'price': this.prices,
-                'tags': this.tags,
-                'colors': this.colors
-
-            })
-                .then(res => {
-                    this.products = res.data.data;
-                })
-                .finally(v => {
-                    $(document).trigger('filterEvn')
-
-                })
         },
 
         clearFilter() {
