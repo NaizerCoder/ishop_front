@@ -2275,15 +2275,20 @@ import Body_product from '@/view/product/Body_product.vue'
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center wow fadeInUp animated">
                                     <ul class="pagination text-center">
-                                        <li class="next"><a href="#0"><i class="flaticon-left-arrows"
-                                                                         aria-hidden="true"></i> </a></li>
-                                        <li><a href="#0">1</a></li>
-                                        <li><a href="#0" class="active">2</a></li>
-                                        <li><a href="#0">3</a></li>
-                                        <li><a href="#0">...</a></li>
-                                        <li><a href="#0">10</a></li>
-                                        <li class="next"><a href="#0"><i class="flaticon-next-1"
-                                                                         aria-hidden="true"></i> </a></li>
+                                        <li v-if="pagination.current_page !== 1" class="next">
+                                            <a href="#0">
+                                                <i class="flaticon-left-arrows" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li v-for="link in pagination.links">
+                                            <a @click.prevent="getProducts(link.label)" :class="link.active ? 'active' : '' " href="{{link.url}}">{{link.label}}</a>
+                                        </li>
+
+                                        <li class="next">
+                                            <a v-if="pagination.last_page !== pagination.current_page" href="#0">
+                                                <i class="flaticon-next-1" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -2311,19 +2316,20 @@ export default {
             tags: [],
             styleColor: '',
             rangeLine: null,
-            key:'',
+            key: '',
 
             countries: [
-                { code: 'GB', name: 'Great Britain' },
-                { code: 'US', name: 'United States' },
-                { code: 'KZ', name: 'Kazakhstan' }
+                {code: 'GB', name: 'Great Britain'},
+                {code: 'US', name: 'United States'},
+                {code: 'KZ', name: 'Kazakhstan'}
             ],
             selectedCountry: null,
             user: {
                 address: {
                     country: null
                 }
-            }
+            },
+            pagination: [],
 
         }
     },
@@ -2365,15 +2371,18 @@ export default {
 
         },
 
-        getProducts() {
+        getProducts(page = 1) {
             this.axios.post('http://ishop/api/products', {
                 'categories': this.categories,
                 'price': this.prices,
                 'tags': this.tags,
-                'colors': this.colors
+                'colors': this.colors,
+                'page': page
             })
                 .then(res => {
                     this.products = res.data.data;
+                    this.pagination = res.data.meta
+                    console.log(this.pagination);
 
                 })
                 .finally(v => {
@@ -2437,7 +2446,7 @@ export default {
             this.tags = []
             this.prices = []
 
-            this.rangeLine.slider("values", [options.min, options.max]);
+            this.rangeLine.slider("option", "values", [options.min, options.max]);
 
 
             // $("#price-range").slider({
@@ -2453,7 +2462,7 @@ export default {
             $('.color-option-single').css('border', '0')
         },
 
-        changeCountry ($event) {
+        changeCountry($event) {
             // this.user.address.country = event.target.value
             // this.selectedCountry = event.target.options[event.target.options.selectedIndex].text
 
@@ -2462,33 +2471,32 @@ export default {
 
         },
 
-        productSort(event){
+        productSort(event) {
             let param = event.target.value
 
             console.log(this.products);
 
-            if( param == 'alpha_asc') {
+            if (param == 'alpha_asc') {
 
                 this.products.sort((a, b) => a.title > b.title ? 1 : -1)
             }
 
-            if( param == 'alpha_desc') {
+            if (param == 'alpha_desc') {
 
                 this.products.sort((a, b) => a.title < b.title ? 1 : -1)
             }
 
-            if( param == 'price_asc') {
+            if (param == 'price_asc') {
 
                 this.products.sort((a, b) => a.price > b.price ? 1 : -1)
             }
 
-            if( param == 'price_desc') {
+            if (param == 'price_desc') {
 
                 this.products.sort((a, b) => a.price < b.price ? 1 : -1)
             }
 
         },
-
 
 
     }
