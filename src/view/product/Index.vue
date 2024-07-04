@@ -2281,8 +2281,9 @@ import Body_product from '@/view/product/Body_product.vue'
                                             </a>
                                         </li>
                                         <li v-for="link in pagination.links">
-                                            <a @click.prevent="getProducts(link.label)" :class="link.active ? 'active' : '' " href="{{link.url}}">{{link.label}}</a>
+                                            <a @click.prevent="getProducts(link.label)" :class="link.active ? 'active' : '' " :href="link.url">{{link.label}}</a>
                                         </li>
+
 
                                         <li class="next">
                                             <a v-if="pagination.last_page !== pagination.current_page" href="#0">
