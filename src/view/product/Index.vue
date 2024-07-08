@@ -2282,11 +2282,20 @@ import Body_product from '@/view/product/Body_product.vue'
                                         </li>
                                         <li v-for="(link, key) in pagination.links">
 
-                                            <a  v-if="(key > 0 && key < pagination.last_page) &&
-                                                        pagination.current_page !== key - 2 &&
-                                                        pagination.last_page
+<!--                                            <a  v-if="(key > 0 && key < pagination.last_page) &&-->
+<!--                                                        pagination.current_page !== key - 2 &&-->
+<!--                                                        pagination.last_page-->
 
-"
+<!--                                                 "-->
+
+                                            <a  v-if="(key <  pagination.current_page - 3 || key < pagination.current_page + 2 ) &&
+                                                       pagination.current_page - 3 < key
+
+
+                                                "
+
+
+
                                                 @click.prevent="getProducts(link.label)" :class="link.active ? 'active' : '' " :href="link.url">{{link.label}}
                                             </a>
                                             <template v-if="pagination.current_page == key - 2">
