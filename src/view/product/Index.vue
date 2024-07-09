@@ -220,14 +220,17 @@ import Body_product from '@/view/product/Body_product.vue'
                                             <div class="row">
                                                 <div v-for="product in products" class="col-xl-4 col-lg-6 col-6 ">
                                                     <div class="products-three-single w-100  mt-30">
-                                                        <div class="products-three-single-img"><a
-                                                                href="shop-details-3.html" class="d-block">
-                                                            <img
-                                                                    :src="product.image[0].url"
-                                                                    class="first-img h-75" alt=""/> <img
+                                                        <div class="products-three-single-img">
+
+                                                            <router-link :to="{name: 'product.show', params:{id: product.id} }">
+                                                                <img
+                                                                :src="product.image[0].url"
+                                                                class="first-img h-75" alt=""/> <img
                                                                 src="/src/assets/images/home-three/productss2-hover-1.png"
                                                                 alt="" class="hover-img"/>
-                                                        </a>
+                                                            </router-link>
+
+
                                                             <div class="products-grid-one__badge-box"> <span
                                                                     class="bg_base badge new ">New</span>
                                                             </div>
@@ -2276,39 +2279,24 @@ import Body_product from '@/view/product/Body_product.vue'
                                 <div class="col-12 d-flex justify-content-center wow fadeInUp animated">
                                     <ul class="pagination text-center">
                                         <li v-if="pagination.current_page !== 1" class="next">
-                                            <a href="#0">
-                                                <i class="flaticon-left-arrows" aria-hidden="true"></i>
+                                            <a href="#0" @click.prevent="getProducts(1)">
+                                                <i class="flaticon-left-arrow-1" aria-hidden="true"></i>
                                             </a>
                                         </li>
                                         <li v-for="(link, key) in pagination.links">
-
-<!--                                            <a  v-if="(key > 0 && key < pagination.last_page) &&-->
-<!--                                                        pagination.current_page !== key - 2 &&-->
-<!--                                                        pagination.last_page-->
-
-<!--                                                 "-->
-
-                                            <a  v-if="(key <  pagination.current_page - 3 || key < pagination.current_page + 2 ) &&
-                                                       pagination.current_page - 3 < key
-
-
+                                            <a v-if="(key <  pagination.current_page - 3 || key < pagination.current_page + 3 ) &&
+                                                       pagination.current_page - 3 < key  &&
+                                                       key > 0  &&
+                                                       key <= pagination.last_page
                                                 "
-
-
-
-                                                @click.prevent="getProducts(link.label)" :class="link.active ? 'active' : '' " :href="link.url">{{link.label}}
+                                               @click.prevent="getProducts(link.label)"
+                                               :class="link.active ? 'active' : '' "
+                                               :href="link.url">{{ link.label }}
                                             </a>
-                                            <template v-if="pagination.current_page == key - 2">
-
-                                                ...
-
-                                            </template>
-
                                         </li>
 
-
-                                        <li class="next">
-                                            <a v-if="pagination.last_page !== pagination.current_page" href="#0">
+                                        <li v-if="pagination.last_page !== pagination.current_page" class="next">
+                                            <a @click.prevent="getProducts(pagination.last_page)"  href="#0">
                                                 <i class="flaticon-next-1" aria-hidden="true"></i>
                                             </a>
                                         </li>
