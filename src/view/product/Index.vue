@@ -2328,18 +2328,6 @@ export default {
             styleColor: '',
             rangeLine: null,
             key: '',
-
-            countries: [
-                {code: 'GB', name: 'Great Britain'},
-                {code: 'US', name: 'United States'},
-                {code: 'KZ', name: 'Kazakhstan'}
-            ],
-            selectedCountry: null,
-            user: {
-                address: {
-                    country: null
-                }
-            },
             pagination: [],
 
         }
@@ -2460,25 +2448,9 @@ export default {
             this.rangeLine.slider("option", "values", [options.min, options.max]);
 
 
-            // $("#price-range").slider({
-            //     range: true,
-            //     min: this.filterProduct.price.minPrice,
-            //     max: this.filterProduct.price.maxPrice,
-            //     values: [this.filterProduct.price.minPrice, this.filterProduct.price.maxPrice],
-            //     slide: function (event, ui) {
-            //         $("#priceRange").val("$" + ui.values[0] + " - $" + ui.values[1]);
-            //     }
-            // });
 
             $('.color-option-single').css('border', '0')
         },
-
-        changeCountry($event) {
-            // this.user.address.country = event.target.value
-            // this.selectedCountry = event.target.options[event.target.options.selectedIndex].text
-
-            console.log('TEST');
-            console.log(event.target.value);
 
         },
 
@@ -2511,7 +2483,7 @@ export default {
 
 
     }
-}
+
 </script>
 
 <style scoped>
