@@ -352,7 +352,7 @@ jQuery(function ($) {
 
         /****======  testimonial-two__slider  ======*******/
         if ($(".testimonial-two__slider").length) {
-            $(".testimonial-two__slider").not('.slick-initialized').slick({
+            $(".testimonial-two__slider").slick({
                 dots: false,
                 infinite: true,
                 speed: 300,
@@ -376,12 +376,11 @@ jQuery(function ($) {
                     }
                 ]
             });
-        }
-        ;
+        };
 
         /****======  product-two-slider-box  ======*******/
         if ($(".product-two-slider-box").length) {
-            $(".product-two-slider-box").not('.slick-initialized').slick({
+            $(".product-two-slider-box").slick({
                 dots: false,
                 infinite: true,
                 speed: 300,
@@ -413,13 +412,12 @@ jQuery(function ($) {
                     }
                 ]
             });
-        }
-        ;
+        };
 
 
         /****====== Catagory_slider  ======*******/
         if ($(".catagory-slider").length) {
-            $(".catagory-slider").not('.slick-initialized').slick({
+            $(".catagory-slider").slick({
                 dots: false,
                 infinite: false,
                 speed: 300,
@@ -461,12 +459,12 @@ jQuery(function ($) {
             $(".categories-tab .nav-link").click(function () {
                 $("#overlay").fadeIn().delay(100).fadeOut();
             });
-        }
-        ;
+        };
+
 
 
         if ($(".catagory-slider-three").length) {
-            $(".catagory-slider-three").not('.slick-initialized').slick({
+            $(".catagory-slider-three").slick({
                 dots: false,
                 infinite: false,
                 speed: 300,
@@ -508,13 +506,13 @@ jQuery(function ($) {
             $(".categories-tab .nav-link").click(function () {
                 $("#overlay").fadeIn().delay(100).fadeOut();
             });
-        }
-        ;
+        };
+
 
 
         /****======  product-slider   ======*******/
         if ($(".product-slider-main").length) {
-            $(".product-slider-main").not('.slick-initialized').slick({
+            $(".product-slider-main").slick({
                 dots: false,
                 infinite: true,
                 speed: 300,
@@ -527,13 +525,12 @@ jQuery(function ($) {
                 autoplaySpeed: 2000,
                 pauseOnHover: false,
             });
-        }
-        ;
+        };
 
 
         /****====== Hero-Slider Start  ======*******/
         if ($(".hero-slider").length) {
-            $(".hero-slider").not('.slick-initialized').slick({
+            $(".hero-slider").slick({
                 dots: false,
                 infinite: false,
                 speed: 300,
@@ -566,8 +563,7 @@ jQuery(function ($) {
                     }
                 ]
             });
-        }
-        ;
+        };
 
 
         /****====== product single 3  ======*******/

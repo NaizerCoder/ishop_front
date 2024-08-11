@@ -222,12 +222,13 @@ import Body_product from '@/view/product/Body_product.vue'
                                                     <div class="products-three-single w-100  mt-30">
                                                         <div class="products-three-single-img">
 
-                                                            <router-link :to="{name: 'product.show', params:{id: product.id} }">
+                                                            <router-link
+                                                                    :to="{name: 'product.show', params:{id: product.id} }">
                                                                 <img
-                                                                :src="product.image[0].url"
-                                                                class="first-img h-75" alt=""/> <img
-                                                                src="/src/assets/images/home-three/productss2-hover-1.png"
-                                                                alt="" class="hover-img"/>
+                                                                        :src="product.image[0].url"
+                                                                        class="first-img h-75" alt=""/> <img
+                                                                    src="/src/assets/images/home-three/productss2-hover-1.png"
+                                                                    alt="" class="hover-img"/>
                                                             </router-link>
 
 
@@ -246,57 +247,89 @@ import Body_product from '@/view/product/Body_product.vue'
                                                                             class="flaticon-left-and-right-arrows"></i>
                                                                         <span>
                                                                             compare</span> </a></li>
-                                                                    <li>
-                                                                        <a @click.prevent="getProduct(product.id)"
+                                                                    <!--                                                                    <li>-->
+                                                                    <!--                                                                        <a @click.prevent="getProduct(product.id)"-->
+                                                                    <!--                                                                           :href="`#popup${product.id}`"-->
+                                                                    <!--                                                                           class="popup_link"> <i-->
+                                                                    <!--                                                                                class="flaticon-visibility"></i>-->
+                                                                    <!--                                                                            <span> quick view</span>-->
+                                                                    <!--                                                                        </a>-->
+                                                                    <!--                                                                    </li>-->
+                                                                    <li><a @click.prevent="getProduct(product.id)"
                                                                            :href="`#popup${product.id}`"
                                                                            class="popup_link"> <i
-                                                                                class="flaticon-visibility"></i>
-                                                                            <span> quick view</span>
-                                                                        </a>
-                                                                    </li>
+                                                                            class="flaticon-visibility"></i> <span> quick view</span>
+                                                                    </a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
+                                                        <template >
+
+
+                                                        </template>
+
+
                                                         <div :id="`popup${product.id}`"
                                                              class="product-gird__quick-view-popup mfp-hide">
-                                                            <div v-if="popupProduct" class="container">
-                                                                <div class="row justify-content-between">
+                                                            <div class="container">
+                                                                <div class="row justify-content-between align-items-center">
                                                                     <div class="col-lg-6">
                                                                         <div class="quick-view__left-content">
                                                                             <div class="tabs">
                                                                                 <div class="popup-product-thumb-box">
-                                                                                    <ul>
+                                                                                    <ul v-if="popupProduct">
                                                                                         <li v-for="imagePop in popupProduct.image"
-                                                                                            class="tab-nav popup-product-thumb">
+                                                                                            class="tab-nav
+                                                                                            popup-product-thumb">
                                                                                             <a :href="`#tabb${imagePop.id}`">
                                                                                                 <img :src="imagePop.url"
                                                                                                      alt=""/>
                                                                                             </a>
                                                                                         </li>
+
                                                                                     </ul>
                                                                                 </div>
                                                                                 <div class="popup-product-main-image-box">
-                                                                                    <div v-for="imagePop in popupProduct.image"
-                                                                                         :id="`tabb${imagePop.id}`"
+<!--                                                                                    <template v-if="popupProduct">-->
+<!--                                                                                        <div v-for="imagePop in popupProduct.image"-->
+<!--                                                                                             :id="`tabb${imagePop.id}`"-->
+<!--                                                                                             class="tab-item popup-product-image">-->
+<!--                                                                                            <div-->
+<!--                                                                                                class="popup-product-single-image">-->
+<!--                                                                                                <img :src="imagePop.url"-->
+<!--                                                                                                     alt=""/>-->
+<!--                                                                                            </div>-->
+<!--                                                                                        </div>-->
+<!--                                                                                    </template>-->
+
+                                                                                    <div id="tabb3"
                                                                                          class="tab-item popup-product-image">
-                                                                                        <div class="popup-product-single-image">
-                                                                                            <img :src="imagePop.url"
-                                                                                                 alt=""/>
-                                                                                        </div>
+                                                                                        <div class="popup-product-single-image"> <img
+                                                                                            src="https://ishop/storage/images/71b98fb906f28067fb281f35134d8c68.jpeg"
+                                                                                            alt="" /> </div>
                                                                                     </div>
 
-                                                                                    <button class="prev">
-                                                                                        <i class="flaticon-back"></i>
-                                                                                    </button>
+                                                                                    <div id="tabb4"
+                                                                                         class="tab-item popup-product-image">
+                                                                                        <div class="popup-product-single-image"> <img
+                                                                                            src="https://ishop/storage/images/9b9a9e01bcec5dc4621ae8a8020b7520.jpg"
+                                                                                            alt="" /> </div>
+                                                                                    </div>
 
-                                                                                    <button class="next">
-                                                                                        <i class="flaticon-next"></i>
+
+
+                                                                                    <button class="prev"><i
+                                                                                            class="flaticon-back"></i>
+                                                                                    </button>
+                                                                                    <button
+                                                                                            class="next"><i
+                                                                                            class="flaticon-next"></i>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-lg-6">
+                                                                    <div v-if="popupProduct" class="col-lg-6">
                                                                         <div class="popup-right-content">
                                                                             <h3>{{ popupProduct.title }}</h3>
                                                                             <div class="ratting"><i
@@ -2296,7 +2329,7 @@ import Body_product from '@/view/product/Body_product.vue'
                                         </li>
 
                                         <li v-if="pagination.last_page !== pagination.current_page" class="next">
-                                            <a @click.prevent="getProducts(pagination.last_page)"  href="#0">
+                                            <a @click.prevent="getProducts(pagination.last_page)" href="#0">
                                                 <i class="flaticon-next-1" aria-hidden="true"></i>
                                             </a>
                                         </li>
@@ -2398,9 +2431,7 @@ export default {
 
                     this.popupProduct = res.data.data
                 })
-                .finally(v => {
-                    $(document).trigger('filterEvn')
-                })
+
         },
 
         getFilterProduct() {
@@ -2448,10 +2479,7 @@ export default {
             this.rangeLine.slider("option", "values", [options.min, options.max]);
 
 
-
             $('.color-option-single').css('border', '0')
-        },
-
         },
 
         productSort(event) {
@@ -2480,9 +2508,10 @@ export default {
             }
 
         },
+    },
 
 
-    }
+}
 
 </script>
 

@@ -24,88 +24,61 @@
                         <div class="col-xl-6 col-lg-6 mt-30 wow fadeInUp animated">
                             <div class="single-product-box one">
                                 <div class="big-product single-product-one slider-for">
-                                    <div>
-                                        <div class="single-item"><img src="../../assets/images/shop/products-img1.jpg"
-                                                                      alt="">
-                                            <div class="ptag"><span class="one">-20% </span></div>
-                                            <a href="#0"
-                                               class="love"> <i class="flaticon-like"></i> </a>
+                                    <div >
+                                        <div class="single-item">
+                                            <img src="../../assets/images/shop/products-img1.jpg" alt="">
+                                            <div class="ptag">
+                                                <span class="one">-20% </span>
+                                            </div>
+                                            <a href="#0" class="love">
+                                                <i class="flaticon-like"></i>
+                                            </a>
                                         </div>
                                     </div>
+
                                     <div>
-                                        <div class="single-item"><img src="../../assets/images/shop/products-img2.jpg"
-                                                                      alt="">
-                                            <div class="ptag"><span class="one">-20% </span></div>
-                                            <a href="#0"
-                                               class="love"> <i class="flaticon-like"></i> </a>
+                                        <div class="single-item">
+                                            <img src="../../assets/images/shop/products-img1.jpg" alt="">
+                                            <div class="ptag">
+                                                <span class="one">-20% </span>
+                                            </div>
+                                            <a href="#0" class="love">
+                                                <i class="flaticon-like"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div class="single-item"><img src="../../assets/images/shop/products-img3.jpg"
-                                                                      alt="">
-                                            <div class="ptag"><span class="one">-20% </span></div>
-                                            <a href="#0"
-                                               class="love"> <i class="flaticon-like"></i> </a>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="single-item"><img src="../../assets/images/shop/products-img4.jpg"
-                                                                      alt="">
-                                            <div class="ptag"><span class="one">-20% </span></div>
-                                            <a href="#0"
-                                               class="love"> <i class="flaticon-like"></i> </a>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="single-item"><img src="../../assets/images/shop/products-img5.jpg"
-                                                                      alt="">
-                                            <div class="ptag"><span class="one">-20% </span></div>
-                                            <a href="#0"
-                                               class="love"> <i class="flaticon-like"></i> </a>
-                                        </div>
-                                    </div>
+
                                 </div>
-                                <div class="navholder">
-                                    <div class="product-slicknav single-product-one-nav slider-nav">
-                                        <div> <span class="single-item"> <img
-                                                src="../../assets/images/shop/shop-details-top-img-1.png"
-                                                alt=""> </span>
-                                        </div>
-                                        <div> <span class="single-item"> <img
-                                                src="../../assets/images/shop/shop-details-top-img-2.png"
-                                                alt=""> </span>
-                                        </div>
-                                        <div> <span class="single-item"> <img
-                                                src="../../assets/images/shop/shop-details-top-img-3.png"
-                                                alt=""> </span>
-                                        </div>
-                                        <div> <span class="single-item"> <img
-                                                src="../../assets/images/shop/shop-details-top-img-1.png"
-                                                alt=""> </span>
-                                        </div>
-                                        <div> <span class="single-item"> <img
-                                                src="../../assets/images/shop/shop-details-top-img-2.png"
-                                                alt=""> </span>
-                                        </div>
-                                    </div>
-                                </div>
+<!--                                <div class="navholder">-->
+<!--                                    <div class="product-slicknav single-product-one-nav slider-nav">-->
+<!--                                        <div> <span class="single-item"> <img-->
+<!--                                                src="../../assets/images/shop/shop-details-top-img-1.png"-->
+<!--                                                alt=""> </span>-->
+<!--                                        </div>-->
+<!--                                        <div> <span class="single-item"> <img-->
+<!--                                                src="../../assets/images/shop/shop-details-top-img-2.png"-->
+<!--                                                alt=""> </span>-->
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 mt-30 wow fadeInUp animated">
                             <div class="shop-details-top-right ">
                                 <div class="shop-details-top-right-content-box">
-                                    <div class="shop-details-top-review-box">
-                                        <div class="shop-details-top-review">
-                                            <ul>
-                                                <li><i class="flaticon-star-1"></i></li>
-                                                <li><i class="flaticon-star-1"></i></li>
-                                                <li><i class="flaticon-star-1"></i></li>
-                                                <li><i class="flaticon-star-1"></i></li>
-                                                <li><i class="flaticon-star-1"></i></li>
-                                            </ul>
-                                            <p>(2 Reviews)</p>
-                                        </div>
-                                    </div>
+<!--                                    <div class="shop-details-top-review-box">-->
+<!--                                        <div class="shop-details-top-review">-->
+<!--                                            <ul>-->
+<!--                                                <li><i class="flaticon-star-1"></i></li>-->
+<!--                                                <li><i class="flaticon-star-1"></i></li>-->
+<!--                                                <li><i class="flaticon-star-1"></i></li>-->
+<!--                                                <li><i class="flaticon-star-1"></i></li>-->
+<!--                                                <li><i class="flaticon-star-1"></i></li>-->
+<!--                                            </ul>-->
+<!--                                            <p>(2 Reviews)</p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="shop-details-top-title">
                                         <h3>{{ product.title }}</h3>
                                     </div>
@@ -138,36 +111,35 @@
                                                     <div :style="` height: 40px;  `"> </div>
                                                 </a>
                                             </li>
-
                                         </ul>
                                     </div>
-                                    <ul class="shop-details-top-ask-question">
-                                        <li><a href="#0">
-                                            <div class="icon"><i class="flaticon-left-and-right-arrows"></i></div>
-                                            <div class="text">
-                                                <p>Add to Compare</p>
-                                            </div>
-                                        </a></li>
-                                        <li><a href="#0">
-                                            <div class="icon"><i class="flaticon-chat-bubble"></i></div>
-                                            <div class="text">
-                                                <p>Ask Question</p>
-                                            </div>
-                                        </a></li>
-                                    </ul>
-                                    <div class="timer-box">
-                                        <h4>Running Offer</h4>
-                                        <div class="countdown-timer">
-                                            <div class="default-coundown">
-                                                <div class="box">
-                                                    <div class="countdown time-countdown-two"
-                                                         data-countdown-time="2022/03/12"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="shop-details-top-product-sale"><span>20</span> Persons looking for this
-                                        product</p>
+<!--                                    <ul class="shop-details-top-ask-question">-->
+<!--                                        <li><a href="#0">-->
+<!--                                            <div class="icon"><i class="flaticon-left-and-right-arrows"></i></div>-->
+<!--                                            <div class="text">-->
+<!--                                                <p>Add to Compare</p>-->
+<!--                                            </div>-->
+<!--                                        </a></li>-->
+<!--                                        <li><a href="#0">-->
+<!--                                            <div class="icon"><i class="flaticon-chat-bubble"></i></div>-->
+<!--                                            <div class="text">-->
+<!--                                                <p>Ask Question</p>-->
+<!--                                            </div>-->
+<!--                                        </a></li>-->
+<!--                                    </ul>-->
+<!--                                    <div class="timer-box">-->
+<!--                                        <h4>Running Offer</h4>-->
+<!--                                        <div class="countdown-timer">-->
+<!--                                            <div class="default-coundown">-->
+<!--                                                <div class="box">-->
+<!--                                                    <div class="countdown time-countdown-two"-->
+<!--                                                         data-countdown-time="2022/03/12"></div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <p class="shop-details-top-product-sale"><span>20</span> Persons looking for this-->
+<!--                                        product</p>-->
                                     <div class="product-quantity">
                                         <h4>Quantity</h4>
                                         <div class="product-quantity-box d-flex align-items-center flex-wrap">
